@@ -2,6 +2,9 @@
 const express = require('express'),
 	router = express.Router();
 
+//
+
+
 // Guild page
 module.exports = function(bot) {
 	// Get information of the player
@@ -60,7 +63,7 @@ module.exports = function(bot) {
 		const player = bot.manager?.players.get(req.params.guildId);
 		if (player) {
 			let filter = req.query.option;
-			if (['nightcore', 'bassboost', 'vaporwave', 'speed'].includes(filter)) {
+			if (['nightcore', 'bassboost', 'vaporwave'].includes(filter)) {
 				filter = `set${filter.charAt(0).toUpperCase() + filter.slice(1)}`;
 				if (['bassboost', 'speed'].includes(filter)) {
 					if (req.query.value && (Number(req.query.value) > 0)) {
@@ -76,7 +79,7 @@ module.exports = function(bot) {
 				res.status(400).json({ error: 'Please specify a filter to update.' });
 			}
 		} else {
-			// fetch guild's basic information
+			// fetch guild basic information || like music playing etc
 			res.status(400).json({ error: 'No music playing in that guild.' });
 		}
 	});
